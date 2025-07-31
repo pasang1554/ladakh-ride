@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladakh Ride - Cab Rental & Tour Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1605649487212-47bdab0622e5?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .rotating-text {
+            position: absolute;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            width: 100%;
+        }
+        .rotating-text.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #rotating-subtitle {
+            position: relative;
+            height: 32px; /* Adjust based on text size */
+        }
+        .card-hover-effect {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .faq-item .answer {
+            transition: max-height 0.5s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .faq-item.open .answer {
+            max-height: 200px;
+        }
+        .faq-item.open .icon-plus {
+            transform: rotate(45deg);
+        }
+        .icon-plus {
+             transition: transform 0.3s ease-in-out;
+        }
+        #booking-modal {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800">Ladakh Ride</a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#services" class="text-gray-600 hover:text-blue-600">Services</a>
+                <a href="#destinations" class="text-gray-600 hover:text-blue-600">Destinations</a>
+                <a href="#packages" class="text-gray-600 hover:text-blue-600">Packages</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600">About</a>
+                <button data-package="Contact Us" class="booking-btn bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Contact Us</button>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
+            <a href="#services" class="block py-2 text-gray-600 hover:text-blue-600">Services</a>
+            <a href="#destinations" class="block py-2 text-gray-600 hover:text-blue-600">Destinations</a>
+            <a href="#packages" class="block py-2 text-gray-600 hover:text-blue-600">Packages</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-blue-600">About</a>
+            <button data-package="Contact Us" class="booking-btn block mt-2 w-full text-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Contact Us</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section text-white">
+            <div class="hero-overlay w-full h-full">
+                <div class="container mx-auto px-6 py-32 md:py-48 flex flex-col items-center justify-center text-center">
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">WELCOME TO LADAKH RIDE</h1>
+                    <div id="rotating-subtitle" class="mt-4 text-lg md:text-2xl font-light">
+                        <p class="rotating-text active">Cab Rental & Tour Agency</p>
+                        <p class="rotating-text">Explore the Beauty of Ladakh</p>
+                        <p class="rotating-text">Adventure Awaits You</p>
+                        <p class="rotating-text">Your Journey Begins Here</p>
+                    </div>
+                    <button data-package="General Inquiry" class="booking-btn mt-8 bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="p-8 border rounded-lg shadow-lg card-hover-effect">
+                        <h3 class="text-2xl font-bold text-gray-800">Cab Rental</h3>
+                        <p class="mt-4 text-gray-600">Reliable and comfortable cabs for your every need in Ladakh.</p>
+                        <button data-package="Cab Rental Inquiry" class="booking-btn mt-6 inline-block text-blue-600 font-semibold hover:underline">More Details &rarr;</button>
+                    </div>
+                    <div class="p-8 border rounded-lg shadow-lg card-hover-effect">
+                        <h3 class="text-2xl font-bold text-gray-800">Tour Packages</h3>
+                        <p class="mt-4 text-gray-600">Curated tour packages to explore the best of Ladakh.</p>
+                        <a href="#packages" class="mt-6 inline-block text-blue-600 font-semibold hover:underline">More Details &rarr;</a>
+                    </div>
+                    <div class="p-8 border rounded-lg shadow-lg card-hover-effect">
+                        <h3 class="text-2xl font-bold text-gray-800">24/7 Available</h3>
+                        <p class="mt-4 text-gray-600">We are here for you around the clock for a hassle-free trip.</p>
+                        <button data-package="24/7 Support Inquiry" class="booking-btn mt-6 inline-block text-blue-600 font-semibold hover:underline">More Details &rarr;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Destinations Section -->
+        <section id="destinations" class="py-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800">Top Destinations</h2>
+                <p class="text-center text-gray-600 mt-4 mb-12">Discover the breathtaking beauty of Ladakh's most iconic locations.</p>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+                    <div class="group"><img src="https://images.unsplash.com/photo-1599159516769-943b1a5531d2?q=80&w=400&h=400&auto=format&fit=crop" alt="Thiksey Monastery" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Monastery</h3></div>
+                    <div class="group"><img src="https://images.unsplash.com/photo-1626528593446-1e7c2a7643a6?q=80&w=400&h=400&auto=format&fit=crop" alt="Pangong Lake" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Pangong Lake</h3></div>
+                    <div class="group"><img src="https://images.unsplash.com/photo-1606492215953-530391694596?q=80&w=400&h=400&auto=format&fit=crop" alt="Nubra Valley" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Nubra Valley</h3></div>
+                    <div class="group"><img src="https://images.unsplash.com/photo-1548965096-36a5a54f8533?q=80&w=400&h=400&auto=format&fit=crop" alt="Sham Valley" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Sham Valley</h3></div>
+                    <div class="group"><img src="https://images.unsplash.com/photo-1628820790930-942b9b7e7441?q=80&w=400&h=400&auto=format&fit=crop" alt="Tso Moriri Lake" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Tso Moriri</h3></div>
+                    <div class="group"><img src="https://images.unsplash.com/photo-1547943537-839352a5a5a8?q=80&w=400&h=400&auto=format&fit=crop" alt="Khardungla Pass" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Khardungla Pass</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 bg-blue-600 text-white">
+            <div class="container mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"><div><p class="text-4xl font-bold">1,200+</p><p class="mt-2 text-lg">Happy Customers</p></div><div><p class="text-4xl font-bold">10+</p><p class="mt-2 text-lg">Years of Experience</p></div><div><p class="text-4xl font-bold">100%</p><p class="mt-2 text-lg">Satisfaction</p></div></div></div>
+        </section>
+
+        <!-- Tour Packages Section -->
+        <section id="packages" class="py-16">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800">Our Tour Packages</h2>
+                <p class="text-center text-gray-600 mt-4 mb-12">Choose the perfect package for your dream Ladakh adventure.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Silver Package -->
+                    <div class="border rounded-lg shadow-lg p-8 flex flex-col card-hover-effect bg-white">
+                        <h3 class="text-2xl font-bold text-gray-800">Silver PACKAGE</h3>
+                        <p class="text-4xl font-bold text-blue-600 my-4">₹20,000</p>
+                        <p class="font-semibold text-gray-500">3 Nights 4 Days Package</p>
+                        <ul class="mt-6 space-y-3 text-gray-600 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Evening Leh Local Sightseeing</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Sham Valley</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Pangong Lake</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Mahindra Xylo & Scorpio</li>
+                        </ul>
+                        <button data-package="Silver PACKAGE" class="booking-btn mt-8 w-full text-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Book Now</button>
+                    </div>
+                    <!-- Gold Package -->
+                    <div class="border-2 border-blue-600 rounded-lg shadow-xl p-8 flex flex-col relative card-hover-effect bg-white">
+                        <span class="absolute top-0 right-4 -mt-4 bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full">POPULAR</span>
+                        <h3 class="text-2xl font-bold text-gray-800">Gold PACKAGE</h3>
+                        <p class="text-4xl font-bold text-blue-600 my-4">₹35,000</p>
+                        <p class="font-semibold text-gray-500">4 Nights 5 Days Package</p>
+                        <ul class="mt-6 space-y-3 text-gray-600 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Evening Leh Local Sightseeing</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Sham Valley upto Alchi</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Nubra Valley</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Nubra Valley to Pangong Lake</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Toyota Innova & Tata Aria</li>
+                        </ul>
+                        <button data-package="Gold PACKAGE" class="booking-btn mt-8 w-full text-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Book Now</button>
+                    </div>
+                    <!-- Diamond Package -->
+                    <div class="border rounded-lg shadow-lg p-8 flex flex-col card-hover-effect bg-white">
+                        <h3 class="text-2xl font-bold text-gray-800">Diamond PACKAGE</h3>
+                        <p class="text-4xl font-bold text-blue-600 my-4">₹38,000</p>
+                        <p class="font-semibold text-gray-500">5 Nights 6 Days Package</p>
+                        <ul class="mt-6 space-y-3 text-gray-600 flex-grow">
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Evening Leh Local Sightseeing</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Sham Valley upto Alchi</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Nubra Valley</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Nubra Valley to Pangong Lake</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Pangong to Leh via Changla Pass</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Toyota Crysta & XUV</li>
+                        </ul>
+                        <button data-package="Diamond PACKAGE" class="booking-btn mt-8 w-full text-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tour Guide / Blog Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800">Tour Guide</h2>
+                <p class="text-center text-gray-600 mt-4 mb-12">Helpful articles to plan your perfect Ladakh trip.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden card-hover-effect"><img src="https://images.unsplash.com/photo-1590324397925-a7a8a8a25c35?q=80&w=600&h=400&auto=format&fit=crop" alt="A taxi in the mountains" class="w-full h-48 object-cover"><div class="p-6"><h3 class="font-bold text-lg text-gray-800">How to Hire the Right Cab That Completes Your Tour</h3><a href="#" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">Read More &rarr;</a></div></div>
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden card-hover-effect"><img src="https://images.unsplash.com/photo-1597142095883-f327a188a179?q=80&w=600&h=400&auto=format&fit=crop" alt="Prayer flags in Ladakh" class="w-full h-48 object-cover"><div class="p-6"><h3 class="font-bold text-lg text-gray-800">Top 5 Do’s & Don’t in Ladakh</h3><a href="#" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">Read More &rarr;</a></div></div>
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden card-hover-effect"><img src="https://images.unsplash.com/photo-1626528593446-1e7c2a7643a6?q=80&w=600&h=400&auto=format&fit=crop" alt="Pangong Lake" class="w-full h-48 object-cover"><div class="p-6"><h3 class="font-bold text-lg text-gray-800">15 Travel Destinations in Leh-Ladakh You Must Visit</h3><a href="#" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">Read More &rarr;</a></div></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About and FAQ Section -->
+        <section id="about" class="py-16">
+            <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- About Us -->
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">About Us</h2>
+                    <p class="text-gray-600 leading-relaxed">We are determined to provide the best cab and tour packages in Leh-Ladakh. Travel hassle-free with safety to your destination with 24/7 Customer Services to bring calm for your holiday getaway.</p>
+                    <a href="#" class="mt-4 inline-block bg-gray-800 text-white px-5 py-2 rounded-md hover:bg-gray-900 transition">Read More</a>
+                </div>
+                <!-- FAQ -->
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
+                    <div class="space-y-4" id="faq-container">
+                        <div class="faq-item bg-white p-4 rounded-lg shadow-sm border">
+                            <button class="faq-question w-full flex justify-between items-center text-left font-semibold text-gray-700">Are Ladakh Ride Cabs Truly Genuine?<span class="icon-plus text-blue-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></span></button>
+                            <div class="answer mt-2 text-gray-600"><p>Yes, we are a registered and trusted agency with years of experience providing reliable services in the Ladakh region.</p></div>
+                        </div>
+                        <div class="faq-item bg-white p-4 rounded-lg shadow-sm border">
+                            <button class="faq-question w-full flex justify-between items-center text-left font-semibold text-gray-700">Do we provide customer service before, during, and after the tour?<span class="icon-plus text-blue-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></span></button>
+                            <div class="answer mt-2 text-gray-600"><p>Absolutely. Our team provides 24/7 support from the moment you inquire until you safely conclude your journey.</p></div>
+                        </div>
+                         <div class="faq-item bg-white p-4 rounded-lg shadow-sm border">
+                            <button class="faq-question w-full flex justify-between items-center text-left font-semibold text-gray-700">Do we have qualified drivers and high-quality vehicles?<span class="icon-plus text-blue-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></span></button>
+                            <div class="answer mt-2 text-gray-600"><p>All our drivers are local, experienced, and licensed. Our fleet of vehicles is well-maintained to handle the terrain of Ladakh.</p></div>
+                        </div>
+                        <div class="faq-item bg-white p-4 rounded-lg shadow-sm border">
+                            <button class="faq-question w-full flex justify-between items-center text-left font-semibold text-gray-700">Do you accept online or cash payments?<span class="icon-plus text-blue-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></span></button>
+                            <div class="answer mt-2 text-gray-600"><p>We accept both online payments for advance bookings and cash payments during your tour for your convenience.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div><h3 class="text-xl font-bold">Ladakh Ride</h3><p class="mt-4 text-gray-400">Your trusted partner for exploring the beauty of Ladakh. Travel with safety and comfort.</p></div>
+                <div><h4 class="text-lg font-semibold">Quick Links</h4><ul class="mt-4 space-y-2"><li><a href="#services" class="text-gray-400 hover:text-white">Services</a></li><li><a href="#packages" class="text-gray-400 hover:text-white">Packages</a></li><li><a href="#about" class="text-gray-400 hover:text-white">About Us</a></li><li><a href="#faq" class="text-gray-400 hover:text-white">FAQ</a></li></ul></div>
+                <div>
+                    <h4 class="text-lg font-semibold">Contact Us</h4>
+                    <ul class="mt-4 space-y-3 text-gray-400">
+                        <li>Email: contact@ladakhride.com</li>
+                        <li>Phone: +91 12345 67890</li>
+                        <li class="flex items-start">
+                             <a href="https://wa.me/918492008932" target="_blank" class="hover:text-white flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="mr-2 mt-1 flex-shrink-0"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.882-9.89-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l-.219.324-1.123 4.105 4.106-1.124.322-.219z"/></svg>
+                                <span>WhatsApp: +91 8492008932</span>
+                            </a>
+                        </li>
+                        <li class="flex items-start">
+                             <a href="https://wa.me/919797796784" target="_blank" class="hover:text-white flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="mr-2 mt-1 flex-shrink-0"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.882-9.89-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l-.219.324-1.123 4.105 4.106-1.124.322-.219z"/></svg>
+                                <span>WhatsApp: +91 9797796784</span>
+                            </a>
+                        </li>
+                        <li>Address: Leh, Ladakh, 194101</li>
+                    </ul>
+                </div>
+                <div><h4 class="text-lg font-semibold">Follow Us</h4><div class="flex space-x-4 mt-4"><a href="#" class="text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a><a href="#" class="text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a><a href="#" class="text-gray-400 hover:text-white"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.148 2 12.315 2zm-1.163 1.943c-1.044-.048-1.688-.21-2.24-.434a2.953 2.953 0 00-1.056.657 2.953 2.953 0 00-.657 1.056c-.224.552-.434 1.196-.434 2.24s.21 1.688.434 2.24a2.953 2.953 0 00.657 1.056 2.953 2.953 0 001.056.657c.552.224 1.196.434 2.24.434s1.688-.21 2.24-.434a2.953 2.953 0 001.056-.657 2.953 2.953 0 00.657-1.056c.224-.552.434-1.196.434-2.24s-.21-1.688-.434-2.24a2.953 2.953 0 00-.657-1.056 2.953 2.953 0 00-1.056-.657c-.552-.224-1.196-.434-2.24-.434zm-1.623 7.828a3.89 3.89 0 117.78 0 3.89 3.89 0 01-7.78 0z" clip-rule="evenodd" /></svg></a></div></div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Ladakh Ride. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/918492008932?text=Hello%20Ladakh%20Ride!%20I'm%20interested%20in%20your%20services." target="_blank" class="fixed bottom-5 right-5 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition transform hover:scale-110 z-30">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.882-9.89-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l-.219.324-1.123 4.105 4.106-1.124.322-.219z"/></svg>
+    </a>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 hidden opacity-0">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-lg p-8 transform transition-all" id="modal-panel">
+            <div id="form-content">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800" id="modal-title">Book Your Trip</h2>
+                    <button id="close-modal-btn" class="text-gray-500 hover:text-gray-800 text-3xl leading-none">&times;</button>
+                </div>
+                <form id="booking-form">
+                    <input type="hidden" id="package" name="package">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-semibold mb-2">Full Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="people" class="block text-gray-700 font-semibold mb-2">Number of People</label>
+                            <input type="number" id="people" name="people" min="1" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="phone" class="block text-gray-700 font-semibold mb-2">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 font-semibold mb-2">Message or Special Requests</label>
+                        <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <button type="submit" id="submit-booking-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center">
+                        <span id="submit-text">Submit Request</span>
+                        <svg id="loading-spinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            <div id="success-message" class="hidden text-center py-8">
+                 <h2 class="text-2xl font-bold text-green-500 mb-4">Thank You!</h2>
+                 <p class="text-gray-700 mb-6">Your request has been sent successfully. We will get back to you shortly.</p>
+                 <a id="whatsapp-confirm-btn" href="#" target="_blank" class="inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 mb-2">Confirm on WhatsApp</a>
+                 <button id="close-success-btn" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Simple booking system without external dependencies
+
+        // --- Main Application Logic ---
+        async function main() {
+            console.log("Initializing booking system...");
+            
+            // --- UI Element Event Listeners ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            
+            const faqContainer = document.getElementById('faq-container');
+            faqContainer.addEventListener('click', (e) => {
+                const faqQuestion = e.target.closest('.faq-question');
+                if (faqQuestion) faqQuestion.parentElement.classList.toggle('open');
+            });
+
+            // --- Booking Modal Functionality ---
+            const modal = document.getElementById('booking-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const bookingBtns = document.querySelectorAll('.booking-btn');
+            const packageInput = document.getElementById('package');
+            const modalTitle = document.getElementById('modal-title');
+            const bookingForm = document.getElementById('booking-form');
+            const submitBtn = document.getElementById('submit-booking-btn');
+            const submitText = document.getElementById('submit-text');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const formContent = document.getElementById('form-content');
+            const successMessage = document.getElementById('success-message');
+            const closeSuccessBtn = document.getElementById('close-success-btn');
+
+            const openModal = (packageName) => {
+                packageInput.value = packageName;
+                modalTitle.textContent = `Inquiry for: ${packageName}`;
+                formContent.classList.remove('hidden');
+                successMessage.classList.add('hidden');
+                bookingForm.reset();
+                modal.classList.remove('hidden');
+                setTimeout(() => modal.classList.remove('opacity-0'), 10);
+            };
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0');
+                setTimeout(() => modal.classList.add('hidden'), 300);
+            };
+
+            bookingBtns.forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.package)));
+            closeModalBtn.addEventListener('click', closeModal);
+            closeSuccessBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+            // --- Simple Form Submission Logic ---
+            bookingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                submitText.classList.add('hidden');
+                loadingSpinner.classList.remove('hidden');
+                submitBtn.disabled = true;
+
+                const formData = {
+                    name: document.getElementById('name').value,
+                    people: document.getElementById('people').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    package: packageInput.value,
+                    message: document.getElementById('message').value,
+                };
+
+                try {
+                    // Simulate form submission
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    
+                    // Create WhatsApp message
+                    const whatsappMessage = `Hello Ladakh Ride! I would like to confirm my booking inquiry.
+
+Name: ${formData.name}
+Number of People: ${formData.people}
+Package: ${formData.package}
+Phone: ${formData.phone}
+Email: ${formData.email}
+Message: ${formData.message}
+
+Please confirm my booking and provide further details. Thank you!`;
+
+                    // Update WhatsApp confirmation button
+                    const whatsappBtn = document.getElementById('whatsapp-confirm-btn');
+                    whatsappBtn.href = `https://wa.me/918492008932?text=${encodeURIComponent(whatsappMessage)}`;
+                    
+                    // Show Success Message
+                    formContent.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    
+                    console.log("Booking inquiry submitted:", formData);
+
+                } catch (error) {
+                    console.error("Error during submission: ", error);
+                    alert("There was an error submitting your request. Please try again.");
+                } finally {
+                    submitText.classList.remove('hidden');
+                    loadingSpinner.classList.add('hidden');
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+
+        // --- Rotating Text Animation ---
+        function initRotatingText() {
+            const container = document.getElementById('rotating-subtitle');
+            if (!container) return;
+            const texts = container.querySelectorAll('.rotating-text');
+            let currentIndex = 0;
+            setInterval(() => {
+                texts[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % texts.length;
+                texts[currentIndex].classList.add('active');
+            }, 4000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            main();
+            initRotatingText();
+        });
+    </script>
+</body>
+</html>
