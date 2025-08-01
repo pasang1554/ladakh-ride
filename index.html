@@ -10,81 +10,229 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
         }
+        
+        /* Enhanced Hero Section */
         .hero-section {
-            background-image: url('https://images.unsplash.com/photo-1605649487212-47bdab0622e5?q=80&w=2070&auto=format&fit=crop');
+            background-image: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%), url('https://images.unsplash.com/photo-1605649487212-47bdab0622e5?q=80&w=2070&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
         .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.6);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);
+            position: relative;
+            z-index: 1;
         }
+        
+        /* Enhanced Animations */
         .rotating-text {
             position: absolute;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(30px) scale(0.9);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             width: 100%;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateY(30px) scale(0.9);
+            white-space: nowrap;
+            overflow: hidden;
         }
         .rotating-text.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translate(-50%, -50%) translateY(0) scale(1);
         }
         #rotating-subtitle {
             position: relative;
-            height: 32px; /* Adjust based on text size */
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 100%;
+            max-width: 100vw;
         }
+        
+        /* Enhanced Card Effects */
         .card-hover-effect {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         .card-hover-effect:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            background: rgba(255, 255, 255, 1);
         }
+        
+        /* Glass Morphism Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+        
+        /* Enhanced FAQ */
         .faq-item .answer {
-            transition: max-height 0.5s ease-in-out;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             max-height: 0;
             overflow: hidden;
         }
         .faq-item.open .answer {
-            max-height: 200px;
+            max-height: 300px;
         }
         .faq-item.open .icon-plus {
             transform: rotate(45deg);
         }
         .icon-plus {
-             transition: transform 0.3s ease-in-out;
+             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
+        /* Enhanced Modal */
         #booking-modal {
-            transition: opacity 0.3s ease-in-out;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Enhanced Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            outline: none;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Enhanced Navigation */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Stats Section Enhancement */
+        .stats-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
 <body class="bg-slate-50">
 
     <!-- Header & Navigation -->
-    <header class="bg-white shadow-md sticky top-0 z-40">
+    <header class="glass-effect sticky top-0 z-40">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-gray-800">Ladakh Ride</a>
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="#services" class="text-gray-600 hover:text-blue-600">Services</a>
-                <a href="#destinations" class="text-gray-600 hover:text-blue-600">Destinations</a>
-                <a href="#packages" class="text-gray-600 hover:text-blue-600">Packages</a>
-                <a href="#about" class="text-gray-600 hover:text-blue-600">About</a>
-                <button data-package="Contact Us" class="booking-btn bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Contact Us</button>
+            <a href="#" class="text-2xl font-bold gradient-text">Ladakh Ride</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#services" class="nav-link text-white hover:text-blue-200 font-medium">Services</a>
+                <a href="#destinations" class="nav-link text-white hover:text-blue-200 font-medium">Destinations</a>
+                <a href="#packages" class="nav-link text-white hover:text-blue-200 font-medium">Packages</a>
+                <a href="#about" class="nav-link text-white hover:text-blue-200 font-medium">About</a>
+                <button data-package="Contact Us" class="booking-btn btn-primary text-white px-6 py-3 rounded-lg font-semibold">Contact Us</button>
             </div>
-            <button id="mobile-menu-button" class="md:hidden">
+            <button id="mobile-menu-button" class="md:hidden text-white">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
-            <a href="#services" class="block py-2 text-gray-600 hover:text-blue-600">Services</a>
-            <a href="#destinations" class="block py-2 text-gray-600 hover:text-blue-600">Destinations</a>
-            <a href="#packages" class="block py-2 text-gray-600 hover:text-blue-600">Packages</a>
-            <a href="#about" class="block py-2 text-gray-600 hover:text-blue-600">About</a>
-            <button data-package="Contact Us" class="booking-btn block mt-2 w-full text-center bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Contact Us</button>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 glass-effect">
+            <a href="#services" class="block py-3 text-white hover:text-blue-200 font-medium">Services</a>
+            <a href="#destinations" class="block py-3 text-white hover:text-blue-200 font-medium">Destinations</a>
+            <a href="#packages" class="block py-3 text-white hover:text-blue-200 font-medium">Packages</a>
+            <a href="#about" class="block py-3 text-white hover:text-blue-200 font-medium">About</a>
+            <button data-package="Contact Us" class="booking-btn block mt-4 w-full text-center btn-primary text-white px-6 py-3 rounded-lg font-semibold">Contact Us</button>
         </div>
     </header>
 
@@ -92,113 +240,320 @@
         <!-- Hero Section -->
         <section class="hero-section text-white">
             <div class="hero-overlay w-full h-full">
-                <div class="container mx-auto px-6 py-32 md:py-48 flex flex-col items-center justify-center text-center">
-                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">WELCOME TO LADAKH RIDE</h1>
-                    <div id="rotating-subtitle" class="mt-4 text-lg md:text-2xl font-light">
+                <div class="container mx-auto px-6 py-32 md:py-48 flex flex-col items-center justify-center text-center min-h-screen">
+                    <div class="fade-in max-w-4xl mx-auto">
+                        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-8">
+                            <span class="gradient-text">WELCOME TO</span><br>
+                            <span class="text-white">LADAKH RIDE</span>
+                        </h1>
+                    </div>
+                    <div id="rotating-subtitle" class="mt-8 text-lg md:text-2xl font-light mb-20">
                         <p class="rotating-text active">Cab Rental & Tour Agency</p>
                         <p class="rotating-text">Explore the Beauty of Ladakh</p>
                         <p class="rotating-text">Adventure Awaits You</p>
                         <p class="rotating-text">Your Journey Begins Here</p>
                     </div>
-                    <button data-package="General Inquiry" class="booking-btn mt-8 bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition transform hover:scale-105">
-                        Book Now
-                    </button>
+                    <div class="fade-in mt-8">
+                        <button data-package="General Inquiry" class="booking-btn btn-primary text-white px-12 py-6 rounded-2xl text-xl font-bold float-animation shadow-2xl">
+                            <span class="flex items-center justify-center">
+                                <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                </svg>
+                                Book Your Adventure Now
+                            </span>
+                        </button>
+                    </div>
+                    <div class="fade-in mt-12">
+                        <p class="text-lg text-blue-200 font-medium">Trusted by 1000+ travelers • 24/7 Support • Best Prices</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="py-16 bg-white">
+        <section id="services" class="py-20 bg-white">
             <div class="container mx-auto px-6">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Our Services</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Discover the perfect blend of comfort, adventure, and reliability with our comprehensive travel services</p>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="p-8 border rounded-lg shadow-lg card-hover-effect">
-                        <h3 class="text-2xl font-bold text-gray-800">Cab Rental</h3>
-                        <p class="mt-4 text-gray-600">Reliable and comfortable cabs for your every need in Ladakh.</p>
-                        <button data-package="Cab Rental Inquiry" class="booking-btn mt-6 inline-block text-blue-600 font-semibold hover:underline">More Details &rarr;</button>
+                    <div class="fade-in p-10 border-0 rounded-2xl shadow-xl card-hover-effect bg-gradient-to-br from-blue-50 to-purple-50">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Cab Rental</h3>
+                        <p class="mt-4 text-gray-600 leading-relaxed">Reliable and comfortable cabs for your every need in Ladakh. Professional drivers and well-maintained vehicles.</p>
+                        <button data-package="Cab Rental Inquiry" class="booking-btn mt-8 inline-block btn-primary text-white px-6 py-3 rounded-lg font-semibold">Get Quote</button>
                     </div>
-                    <div class="p-8 border rounded-lg shadow-lg card-hover-effect">
-                        <h3 class="text-2xl font-bold text-gray-800">Tour Packages</h3>
-                        <p class="mt-4 text-gray-600">Curated tour packages to explore the best of Ladakh.</p>
-                        <a href="#packages" class="mt-6 inline-block text-blue-600 font-semibold hover:underline">More Details &rarr;</a>
+                    <div class="fade-in p-10 border-0 rounded-2xl shadow-xl card-hover-effect bg-gradient-to-br from-green-50 to-blue-50">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Tour Packages</h3>
+                        <p class="mt-4 text-gray-600 leading-relaxed">Curated tour packages to explore the best of Ladakh. Customized itineraries for every traveler.</p>
+                        <a href="#packages" class="mt-8 inline-block btn-primary text-white px-6 py-3 rounded-lg font-semibold">View Packages</a>
                     </div>
-                    <div class="p-8 border rounded-lg shadow-lg card-hover-effect">
-                        <h3 class="text-2xl font-bold text-gray-800">24/7 Available</h3>
-                        <p class="mt-4 text-gray-600">We are here for you around the clock for a hassle-free trip.</p>
-                        <button data-package="24/7 Support Inquiry" class="booking-btn mt-6 inline-block text-blue-600 font-semibold hover:underline">More Details &rarr;</button>
+                    <div class="fade-in p-10 border-0 rounded-2xl shadow-xl card-hover-effect bg-gradient-to-br from-purple-50 to-pink-50">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">24/7 Support</h3>
+                        <p class="mt-4 text-gray-600 leading-relaxed">We are here for you around the clock for a hassle-free trip. Emergency support and real-time assistance.</p>
+                        <button data-package="24/7 Support Inquiry" class="booking-btn mt-8 inline-block btn-primary text-white px-6 py-3 rounded-lg font-semibold">Contact Support</button>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Top Destinations Section -->
-        <section id="destinations" class="py-16">
+        <section id="destinations" class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800">Top Destinations</h2>
-                <p class="text-center text-gray-600 mt-4 mb-12">Discover the breathtaking beauty of Ladakh's most iconic locations.</p>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
-                    <div class="group"><img src="https://images.unsplash.com/photo-1599159516769-943b1a5531d2?q=80&w=400&h=400&auto=format&fit=crop" alt="Thiksey Monastery" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Monastery</h3></div>
-                    <div class="group"><img src="https://images.unsplash.com/photo-1626528593446-1e7c2a7643a6?q=80&w=400&h=400&auto=format&fit=crop" alt="Pangong Lake" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Pangong Lake</h3></div>
-                    <div class="group"><img src="https://images.unsplash.com/photo-1606492215953-530391694596?q=80&w=400&h=400&auto=format&fit=crop" alt="Nubra Valley" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Nubra Valley</h3></div>
-                    <div class="group"><img src="https://images.unsplash.com/photo-1548965096-36a5a54f8533?q=80&w=400&h=400&auto=format&fit=crop" alt="Sham Valley" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Sham Valley</h3></div>
-                    <div class="group"><img src="https://images.unsplash.com/photo-1628820790930-942b9b7e7441?q=80&w=400&h=400&auto=format&fit=crop" alt="Tso Moriri Lake" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Tso Moriri</h3></div>
-                    <div class="group"><img src="https://images.unsplash.com/photo-1547943537-839352a5a5a8?q=80&w=400&h=400&auto=format&fit=crop" alt="Khardungla Pass" class="w-full h-40 object-cover rounded-lg shadow-md group-hover:opacity-80 transition"><h3 class="mt-4 font-semibold text-gray-700">Khardungla Pass</h3></div>
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Top Destinations</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Discover the breathtaking beauty of Ladakh's most iconic locations. Each destination offers a unique experience.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
+                    <div class="fade-in group">
+                        <div class="relative overflow-hidden rounded-2xl shadow-xl card-hover-effect">
+                            <img src="thiksey.jpg" alt="Thiksey Monastery" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <h3 class="text-white font-bold text-lg">Monastery</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in group">
+                        <div class="relative overflow-hidden rounded-2xl shadow-xl card-hover-effect">
+                            <img src="pangong.jpg" alt="Pangong Lake" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <h3 class="text-white font-bold text-lg">Pangong Lake</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in group">
+                        <div class="relative overflow-hidden rounded-2xl shadow-xl card-hover-effect">
+                            <img src="nubra.jpg" alt="Nubra Valley" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <h3 class="text-white font-bold text-lg">Nubra Valley</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in group">
+                        <div class="relative overflow-hidden rounded-2xl shadow-xl card-hover-effect">
+                            <img src="sham.jpg" alt="Sham Valley" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <h3 class="text-white font-bold text-lg">Sham Valley</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in group">
+                        <div class="relative overflow-hidden rounded-2xl shadow-xl card-hover-effect">
+                            <img src="tso.jpg" alt="Tso Moriri Lake" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <h3 class="text-white font-bold text-lg">Tso Moriri</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in group">
+                        <div class="relative overflow-hidden rounded-2xl shadow-xl card-hover-effect">
+                            <img src="khardung.jpg" alt="Khardungla Pass" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-4">
+                                <h3 class="text-white font-bold text-lg">Khardungla Pass</h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Stats Section -->
-        <section class="py-16 bg-blue-600 text-white">
-            <div class="container mx-auto px-6"><div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"><div><p class="text-4xl font-bold">1,200+</p><p class="mt-2 text-lg">Happy Customers</p></div><div><p class="text-4xl font-bold">10+</p><p class="mt-2 text-lg">Years of Experience</p></div><div><p class="text-4xl font-bold">100%</p><p class="mt-2 text-lg">Satisfaction</p></div></div></div>
+        <section class="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 text-white relative overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-20"></div>
+            <div class="container mx-auto px-6 relative z-10">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Why Choose Ladakh Ride?</h2>
+                    <p class="text-xl text-blue-100">Trusted by thousands of travelers for unforgettable experiences</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="fade-in stats-card p-8 rounded-2xl">
+                        <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-5xl font-bold mb-2">1,200+</p>
+                        <p class="text-lg text-blue-100">Happy Customers</p>
+                    </div>
+                    <div class="fade-in stats-card p-8 rounded-2xl">
+                        <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-5xl font-bold mb-2">10+</p>
+                        <p class="text-lg text-blue-100">Years of Experience</p>
+                    </div>
+                    <div class="fade-in stats-card p-8 rounded-2xl">
+                        <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <p class="text-5xl font-bold mb-2">100%</p>
+                        <p class="text-lg text-blue-100">Satisfaction Rate</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Tour Packages Section -->
-        <section id="packages" class="py-16">
+        <section id="packages" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800">Our Tour Packages</h2>
-                <p class="text-center text-gray-600 mt-4 mb-12">Choose the perfect package for your dream Ladakh adventure.</p>
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Our Tour Packages</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Choose the perfect package for your dream Ladakh adventure. Each package is carefully crafted for the ultimate experience.</p>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Silver Package -->
-                    <div class="border rounded-lg shadow-lg p-8 flex flex-col card-hover-effect bg-white">
-                        <h3 class="text-2xl font-bold text-gray-800">Silver PACKAGE</h3>
-                        <p class="text-4xl font-bold text-blue-600 my-4">₹20,000</p>
-                        <p class="font-semibold text-gray-500">3 Nights 4 Days Package</p>
-                        <ul class="mt-6 space-y-3 text-gray-600 flex-grow">
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Evening Leh Local Sightseeing</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Sham Valley</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Pangong Lake</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Mahindra Xylo & Scorpio</li>
+                    <div class="fade-in border-0 rounded-2xl shadow-2xl p-8 flex flex-col card-hover-effect bg-white relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-400 to-gray-600"></div>
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Silver Package</h3>
+                            <div class="text-5xl font-bold gradient-text mb-2">₹20,000</div>
+                            <p class="text-gray-500 font-medium">3 Nights 4 Days Package</p>
+                        </div>
+                        <ul class="space-y-4 text-gray-600 flex-grow mb-8">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Evening Leh Local Sightseeing</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Leh to Sham Valley</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Leh to Pangong Lake</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Mahindra Xylo & Scorpio</span>
+                            </li>
                         </ul>
-                        <button data-package="Silver PACKAGE" class="booking-btn mt-8 w-full text-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Book Now</button>
+                        <button data-package="Silver PACKAGE" class="booking-btn w-full text-center btn-primary text-white px-6 py-4 rounded-xl font-semibold text-lg">Book Now</button>
                     </div>
+                    
                     <!-- Gold Package -->
-                    <div class="border-2 border-blue-600 rounded-lg shadow-xl p-8 flex flex-col relative card-hover-effect bg-white">
-                        <span class="absolute top-0 right-4 -mt-4 bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-full">POPULAR</span>
-                        <h3 class="text-2xl font-bold text-gray-800">Gold PACKAGE</h3>
-                        <p class="text-4xl font-bold text-blue-600 my-4">₹35,000</p>
-                        <p class="font-semibold text-gray-500">4 Nights 5 Days Package</p>
-                        <ul class="mt-6 space-y-3 text-gray-600 flex-grow">
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Evening Leh Local Sightseeing</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Sham Valley upto Alchi</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Nubra Valley</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Nubra Valley to Pangong Lake</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Toyota Innova & Tata Aria</li>
+                    <div class="fade-in border-2 border-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl shadow-2xl p-8 flex flex-col card-hover-effect bg-white relative overflow-hidden transform scale-105">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-orange-500"></div>
+                        <span class="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg">MOST POPULAR</span>
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Gold Package</h3>
+                            <div class="text-5xl font-bold gradient-text mb-2">₹35,000</div>
+                            <p class="text-gray-500 font-medium">4 Nights 5 Days Package</p>
+                        </div>
+                        <ul class="space-y-4 text-gray-600 flex-grow mb-8">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Evening Leh Local Sightseeing</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Leh to Sham Valley upto Alchi</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Leh to Nubra Valley</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Nubra Valley to Pangong Lake</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Toyota Innova & Tata Aria</span>
+                            </li>
                         </ul>
-                        <button data-package="Gold PACKAGE" class="booking-btn mt-8 w-full text-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Book Now</button>
+                        <button data-package="Gold PACKAGE" class="booking-btn w-full text-center btn-primary text-white px-6 py-4 rounded-xl font-semibold text-lg">Book Now</button>
                     </div>
+                    
                     <!-- Diamond Package -->
-                    <div class="border rounded-lg shadow-lg p-8 flex flex-col card-hover-effect bg-white">
-                        <h3 class="text-2xl font-bold text-gray-800">Diamond PACKAGE</h3>
-                        <p class="text-4xl font-bold text-blue-600 my-4">₹38,000</p>
-                        <p class="font-semibold text-gray-500">5 Nights 6 Days Package</p>
-                        <ul class="mt-6 space-y-3 text-gray-600 flex-grow">
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Evening Leh Local Sightseeing</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Sham Valley upto Alchi</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Leh to Nubra Valley</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Nubra Valley to Pangong Lake</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Pangong to Leh via Changla Pass</li>
-                            <li class="flex items-center"><svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Toyota Crysta & XUV</li>
+                    <div class="fade-in border-0 rounded-2xl shadow-2xl p-8 flex flex-col card-hover-effect bg-white relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-400 to-pink-500"></div>
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-2">Diamond Package</h3>
+                            <div class="text-5xl font-bold gradient-text mb-2">₹38,000</div>
+                            <p class="text-gray-500 font-medium">5 Nights 6 Days Package</p>
+                        </div>
+                        <ul class="space-y-4 text-gray-600 flex-grow mb-8">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Evening Leh Local Sightseeing</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Leh to Sham Valley upto Alchi</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Leh to Nubra Valley</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Nubra Valley to Pangong Lake</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Pangong to Leh via Changla Pass</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                <span>Toyota Crysta & XUV</span>
+                            </li>
                         </ul>
-                        <button data-package="Diamond PACKAGE" class="booking-btn mt-8 w-full text-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">Book Now</button>
+                        <button data-package="Diamond PACKAGE" class="booking-btn w-full text-center btn-primary text-white px-6 py-4 rounded-xl font-semibold text-lg">Book Now</button>
                     </div>
                 </div>
             </div>
@@ -210,9 +565,9 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800">Tour Guide</h2>
                 <p class="text-center text-gray-600 mt-4 mb-12">Helpful articles to plan your perfect Ladakh trip.</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden card-hover-effect"><img src="https://images.unsplash.com/photo-1590324397925-a7a8a8a25c35?q=80&w=600&h=400&auto=format&fit=crop" alt="A taxi in the mountains" class="w-full h-48 object-cover"><div class="p-6"><h3 class="font-bold text-lg text-gray-800">How to Hire the Right Cab That Completes Your Tour</h3><a href="#" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">Read More &rarr;</a></div></div>
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden card-hover-effect"><img src="https://images.unsplash.com/photo-1597142095883-f327a188a179?q=80&w=600&h=400&auto=format&fit=crop" alt="Prayer flags in Ladakh" class="w-full h-48 object-cover"><div class="p-6"><h3 class="font-bold text-lg text-gray-800">Top 5 Do’s & Don’t in Ladakh</h3><a href="#" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">Read More &rarr;</a></div></div>
-                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden card-hover-effect"><img src="https://images.unsplash.com/photo-1626528593446-1e7c2a7643a6?q=80&w=600&h=400&auto=format&fit=crop" alt="Pangong Lake" class="w-full h-48 object-cover"><div class="p-6"><h3 class="font-bold text-lg text-gray-800">15 Travel Destinations in Leh-Ladakh You Must Visit</h3><a href="#" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">Read More &rarr;</a></div></div>
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden card-hover-effect"><img src="taxi.jpg" alt="A taxi in the mountains" class="w-full h-48 object-cover"><div class="p-6"><h3 class="font-bold text-lg text-gray-800">How to Hire the Right Cab That Completes Your Tour</h3><a href="#" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">Read More &rarr;</a></div></div>
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden card-hover-effect"><img src="prayer.jpg" alt="Prayer flags in Ladakh" class="w-full h-48 object-cover"><div class="p-6"><h3 class="font-bold text-lg text-gray-800">Top 5 Do’s & Don’t in Ladakh</h3><a href="#" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">Read More &rarr;</a></div></div>
+                    <div class="bg-gray-50 rounded-lg shadow-lg overflow-hidden card-hover-effect"><img src="pangong.jpg" alt="Pangong Lake" class="w-full h-48 object-cover"><div class="p-6"><h3 class="font-bold text-lg text-gray-800">15 Travel Destinations in Leh-Ladakh You Must Visit</h3><a href="#" class="text-blue-600 font-semibold mt-4 inline-block hover:underline">Read More &rarr;</a></div></div>
                 </div>
             </div>
         </section>
@@ -287,8 +642,9 @@
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/918492008932?text=Hello%20Ladakh%20Ride!%20I'm%20interested%20in%20your%20services." target="_blank" class="fixed bottom-5 right-5 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition transform hover:scale-110 z-30">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.882-9.89-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l-.219.324-1.123 4.105 4.106-1.124.322-.219z"/></svg>
+    <a href="https://wa.me/918492008932?text=Hello%20Ladakh%20Ride!%20I'm%20interested%20in%20your%20services." target="_blank" class="fixed bottom-6 right-6 bg-gradient-to-r from-green-500 to-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-110 z-30 float-animation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.882-9.89-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l-.219.324-1.123 4.105 4.106-1.124.322-.219z"/></svg>
+        <div class="absolute -top-2 -right-2 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center text-xs font-bold animate-pulse">24/7</div>
     </a>
 
     <!-- Booking Modal -->
@@ -463,7 +819,29 @@ Please confirm my booking and provide further details. Thank you!`;
         document.addEventListener('DOMContentLoaded', () => {
             main();
             initRotatingText();
+            initScrollAnimations();
         });
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
     </script>
 </body>
 </html>
