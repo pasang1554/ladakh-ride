@@ -6,7 +6,7 @@
   <title>Ladakh Ride | Cab Rental & Tour Agency</title>
 
   <!-- SEO -->
-  <meta name="description" content="Ladakh Ride — locally-owned cab rental & tour agency in Leh-Ladakh. 1200+ happy travelers, 10+ years experience. Custom tours to Pangong, Nubra, Tso Moriri & more. 24/7 support." />
+  <meta name="description" content="Ladakh Ride — locally-owned cab rental & tour agency in Leh-Ladakh. 1200+ happy travelers, 10+ years of experience. Custom tours to Pangong, Nubra, Tso Moriri & more. 24/7 support." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.ladakhride.com/" />
 
@@ -36,9 +36,6 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
-  <!-- Razorpay (Payments) -->
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -51,7 +48,9 @@
       * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
     /* Ensure smoother mobile perf for fixed background */
-    @media (max-width: 768px) { .hero-section { background-attachment: scroll; } }
+    @media (max-width: 768px) {
+      .hero-section { background-attachment: scroll; }
+    }
 
     /* Enhanced Hero Section */
     .hero-section {
@@ -68,19 +67,29 @@
       background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
       opacity: 0.3;
     }
-    .hero-overlay { background: linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.7) 100%); position: relative; z-index: 1; }
+    .hero-overlay {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);
+      position: relative;
+      z-index: 1;
+    }
 
     /* Rotating text */
     .rotating-text {
-      position: absolute; opacity: 0;
+      position: absolute;
+      opacity: 0;
       transform: translateY(30px) scale(0.9);
       transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      width: 100%; text-align: center; top: 50%; left: 50%;
+      width: 100%;
+      text-align: center;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%) translateY(30px) scale(0.9);
       white-space: nowrap; overflow: hidden;
     }
     .rotating-text.active { opacity: 1; transform: translate(-50%, -50%) translateY(0) scale(1); }
-    #rotating-subtitle { position: relative; height: 60px; display: flex; align-items: center; justify-content: center; min-width: 100%; max-width: 100vw; }
+    #rotating-subtitle {
+      position: relative; height: 60px; display: flex; align-items: center; justify-content: center; min-width: 100%; max-width: 100vw;
+    }
 
     /* Cards & Glass */
     .card-hover-effect {
@@ -89,8 +98,17 @@
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .card-hover-effect:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); background: rgba(255,255,255,1); }
-    .glass-effect { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37); }
+    .card-hover-effect:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      background: rgba(255, 255, 255, 1);
+    }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
 
     /* FAQ */
     .faq-item .answer { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); max-height: 0; overflow: hidden; }
@@ -108,20 +126,24 @@
     /* Gradient Text */
     .gradient-text {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     /* Buttons */
     .btn-primary {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      transition: all 0.3s ease; position: relative; overflow: hidden; border: none; outline: none;
+      transition: all 0.3s ease;
+      position: relative; overflow: hidden; border: none; outline: none;
     }
     .btn-primary::before {
       content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
     }
     .btn-primary:hover::before { left: 100%; }
-    .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 35px rgba(102,126,234,0.5); }
+    .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5); }
     .btn-primary:active { transform: translateY(-1px) scale(0.98); }
 
     /* Scroll Animations */
@@ -132,18 +154,26 @@
     .nav-link { position: relative; transition: all 0.3s ease; }
     .nav-link::after {
       content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transition: width 0.3s ease;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transition: width 0.3s ease;
     }
     .nav-link:hover::after { width: 100%; }
 
     /* Stats */
     .stats-card {
-      background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
     }
-    .stats-card:hover { transform: scale(1.05); background: rgba(255,255,255,0.2); }
+    .stats-card:hover { transform: scale(1.05); background: rgba(255, 255, 255, 0.2); }
 
     /* Sticky mobile CTA */
-    .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); z-index: 40; }
+    .sticky-cta {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      z-index: 40;
+    }
 
     /* Testimonial slider */
     .slider { position: relative; overflow: hidden; }
@@ -152,7 +182,9 @@
 
     /* Price estimate pill */
     .price-pill {
-      display: inline-flex; align-items: center; gap: 8px; background: rgba(102,126,234,0.12); border: 1px solid rgba(102,126,234,0.3);
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(102,126,234,0.12);
+      border: 1px solid rgba(102,126,234,0.3);
       color: #374151; border-radius: 9999px; padding: 8px 14px;
     }
 
@@ -161,7 +193,11 @@
 
     /* Shimmer */
     .shimmer { position: relative; overflow: hidden; }
-    .shimmer::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); animation: shimmer 2s infinite; }
+    .shimmer::after {
+      content: ''; position: absolute; inset: 0; transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      animation: shimmer 2s infinite;
+    }
     @keyframes shimmer { 100% { transform: translateX(100%); } }
 
     /* Lightbox + badges */
@@ -176,13 +212,6 @@
 
     /* Itinerary tabs */
     .itinerary-tab.active { background: #1f2937; color: #fff; }
-
-    /* Smooth anchor scroll + offset for sticky header */
-    html { scroll-behavior: smooth; }
-    section[id], [id]:target { scroll-margin-top: var(--header-offset, 96px); }
-
-    /* Back to top button style */
-    #back-to-top { position: fixed; right: 1rem; bottom: calc(env(safe-area-inset-bottom) + 6rem); z-index: 50; }
   </style>
 </head>
 <body class="bg-slate-50 text-gray-800">
@@ -276,11 +305,7 @@
                 Plan My Ladakh Trip
               </span>
             </button>
-            <a href="#services" id="scroll-down-btn" class="mt-2 inline-flex items-center text-blue-100 hover:text-white">
-              <svg width="22" height="22" fill="currentColor" class="mr-2"><path d="M12 5v10l-4-4m4 4l4-4"/></svg>
-              Explore services
-            </a>
-            <div class="price-pill mt-2">
+            <div class="price-pill">
               <svg class="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zM11 7h2v2h-2zM12 19a1 1 0 0 1-1-1v-6h2v6a1 1 0 0 1-1 1z"/></svg>
               Best Price Guarantee • Free Rescheduling
             </div>
@@ -411,7 +436,7 @@
             </div>
           </div>
 
-          <!-- Road status -->
+          <!-- Road status (manual quick edit) -->
           <div class="card-hover-effect p-6 rounded-2xl">
             <h3 class="text-xl font-bold mb-4">Road Status</h3>
             <ul class="space-y-3 text-gray-700">
@@ -469,35 +494,21 @@
               <li class="mb-10 ml-6">
                 <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-purple-200 rounded-full ring-8 ring-white">1</span>
                 <h3 class="font-bold text-lg">Arrive Leh • Acclimatize • Evening Local</h3>
-                <div class="flex gap-2 mt-1 text-xs text-indigo-700">
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Alt ~3,500 m</span>
-                </div>
                 <p class="text-gray-600">Airport pickup, hotel check-in, rest. Evening visit Shanti Stupa, Leh Market.</p>
               </li>
               <li class="mb-10 ml-6">
                 <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-purple-200 rounded-full ring-8 ring-white">2</span>
                 <h3 class="font-bold text-lg">Sham Valley up to Alchi</h3>
-                <div class="flex gap-2 mt-1 text-xs text-indigo-700">
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive ~4-5h</span>
-                </div>
                 <p class="text-gray-600">Magnetic Hill, Indus–Zanskar Sangam, Gurudwara Pathar Sahib, Alchi Monastery. Return to Leh.</p>
               </li>
               <li class="mb-10 ml-6">
                 <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-purple-200 rounded-full ring-8 ring-white">3</span>
                 <h3 class="font-bold text-lg">Leh → Pangong Lake (Overnight)</h3>
-                <div class="flex gap-2 mt-1 text-xs text-indigo-700">
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive 5–6h</span>
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Alt ~4,250 m</span>
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Via Chang La</span>
-                </div>
                 <p class="text-gray-600">Via Chang La. Check-in at lakeside camp/hotel. Sunset by the lake.</p>
               </li>
               <li class="ml-6">
                 <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-purple-200 rounded-full ring-8 ring-white">4</span>
                 <h3 class="font-bold text-lg">Pangong → Leh • Departure</h3>
-                <div class="flex gap-2 mt-1 text-xs text-indigo-700">
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive 5–6h</span>
-                </div>
                 <p class="text-gray-600">Return via Chang La. Airport drop or hotel.</p>
               </li>
             </ol>
@@ -518,42 +529,26 @@ Day 4: Pangong → Leh (Airport/Hotel)</pre>
               <li class="mb-10 ml-6">
                 <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-yellow-200 rounded-full ring-8 ring-white">1</span>
                 <h3 class="font-bold text-lg">Arrive Leh • Acclimatize • Local</h3>
-                <div class="flex gap-2 mt-1 text-xs text-indigo-700">
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Alt ~3,500 m</span>
-                </div>
                 <p class="text-gray-600">Airport pickup, rest, evening Leh Palace/Market.</p>
               </li>
               <li class="mb-10 ml-6">
                 <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-yellow-200 rounded-full ring-8 ring-white">2</span>
                 <h3 class="font-bold text-lg">Sham Valley up to Alchi</h3>
-                <div class="flex gap-2 mt-1 text-xs text-indigo-700">
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive ~4-5h</span>
-                </div>
                 <p class="text-gray-600">Magnetic Hill, Sangam, Pathar Sahib, Alchi Monastery.</p>
               </li>
               <li class="mb-10 ml-6">
                 <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-yellow-200 rounded-full ring-8 ring-white">3</span>
                 <h3 class="font-bold text-lg">Leh → Nubra via Khardung La</h3>
-                <div class="flex gap-2 mt-1 text-xs text-indigo-700">
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive 5–6h</span>
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Alt ~5,359 m</span>
-                </div>
                 <p class="text-gray-600">Hunder dunes, Bactrian camels, Diskit Monastery. Overnight Nubra.</p>
               </li>
               <li class="mb-10 ml-6">
                 <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-yellow-200 rounded-full ring-8 ring-white">4</span>
                 <h3 class="font-bold text-lg">Nubra → Pangong via Shyok</h3>
-                <div class="flex gap-2 mt-1 text-xs text-indigo-700">
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive 5–6h</span>
-                </div>
                 <p class="text-gray-600">Scenic route along Shyok. Overnight Pangong.</p>
               </li>
               <li class="ml-6">
                 <span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-yellow-200 rounded-full ring-8 ring-white">5</span>
                 <h3 class="font-bold text-lg">Pangong → Leh via Chang La • Departure</h3>
-                <div class="flex gap-2 mt-1 text-xs text-indigo-700">
-                  <span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive 5–6h</span>
-                </div>
                 <p class="text-gray-600">Return to Leh. Airport/hotel drop.</p>
               </li>
             </ol>
@@ -572,12 +567,12 @@ Day 5: Pangong → Leh via Chang La (Departure)</pre>
           <!-- Diamond -->
           <div id="itinerary-diamond" class="itinerary-panel hidden">
             <ol class="relative border-l border-gray-200">
-              <li class="mb-10 ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">1</span><h3 class="font-bold text-lg">Arrive Leh • Acclimatize • Local</h3><div class="flex gap-2 mt-1 text-xs text-indigo-700"><span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Alt ~3,500 m</span></div><p class="text-gray-600">Rest + evening sights.</p></li>
-              <li class="mb-10 ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">2</span><h3 class="font-bold text-lg">Sham Valley up to Alchi</h3><div class="flex gap-2 mt-1 text-xs text-indigo-700"><span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive ~4-5h</span></div><p class="text-gray-600">Magnetic Hill, Sangam, Pathar Sahib, Alchi.</p></li>
-              <li class="mb-10 ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">3</span><h3 class="font-bold text-lg">Leh → Nubra via Khardung La</h3><div class="flex gap-2 mt-1 text-xs text-indigo-700"><span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive 5–6h</span><span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Alt ~5,359 m</span></div><p class="text-gray-600">Hunder dunes, Diskit. Overnight Nubra.</p></li>
-              <li class="mb-10 ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">4</span><h3 class="font-bold text-lg">Nubra → Pangong via Shyok</h3><div class="flex gap-2 mt-1 text-xs text-indigo-700"><span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive 5–6h</span></div><p class="text-gray-600">Overnight Pangong.</p></li>
-              <li class="mb-10 ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">5</span><h3 class="font-bold text-lg">Pangong → Leh via Chang La</h3><div class="flex gap-2 mt-1 text-xs text-indigo-700"><span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Drive 5–6h</span></div><p class="text-gray-600">Return to Leh.</p></li>
-              <li class="ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">6</span><h3 class="font-bold text-lg">Buffer Monasteries • Departure</h3><div class="flex gap-2 mt-1 text-xs text-indigo-700"><span class="px-2 py-1 bg-indigo-50 rounded-full font-semibold">Flexible</span></div><p class="text-gray-600">Thiksey/Hemis/Shey as time permits. Airport drop.</p></li>
+              <li class="mb-10 ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">1</span><h3 class="font-bold text-lg">Arrive Leh • Acclimatize • Local</h3><p class="text-gray-600">Rest + evening sights.</p></li>
+              <li class="mb-10 ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">2</span><h3 class="font-bold text-lg">Sham Valley up to Alchi</h3><p class="text-gray-600">Magnetic Hill, Sangam, Pathar Sahib, Alchi.</p></li>
+              <li class="mb-10 ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">3</span><h3 class="font-bold text-lg">Leh → Nubra via Khardung La</h3><p class="text-gray-600">Hunder dunes, Diskit. Overnight Nubra.</p></li>
+              <li class="mb-10 ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">4</span><h3 class="font-bold text-lg">Nubra → Pangong via Shyok</h3><p class="text-gray-600">Overnight Pangong.</p></li>
+              <li class="mb-10 ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">5</span><h3 class="font-bold text-lg">Pangong → Leh via Chang La</h3><p class="text-gray-600">Return to Leh.</p></li>
+              <li class="ml-6"><span class="absolute -left-3 flex items-center justify-center w-6 h-6 bg-pink-200 rounded-full ring-8 ring-white">6</span><h3 class="font-bold text-lg">Buffer Monasteries • Departure</h3><p class="text-gray-600">Thiksey/Hemis/Shey as time permits. Airport drop.</p></li>
             </ol>
             <div class="flex flex-wrap gap-3">
               <button class="booking-btn btn-primary text-white px-5 py-2 rounded-lg" data-package="Diamond Package">Add to Booking</button>
@@ -610,10 +605,22 @@ Day 6: Monasteries / Buffer day (Departure)</pre>
           <div class="space-y-4">
             <div class="card-hover-effect p-4 rounded-xl">
               <h3 class="font-semibold mb-3">Show Routes</h3>
-              <label class="flex items-center gap-2 mb-2"><input type="checkbox" class="route-toggle" data-route="leh-nubra" checked><span>Leh → Nubra (Khardung La)</span></label>
-              <label class="flex items-center gap-2 mb-2"><input type="checkbox" class="route-toggle" data-route="nubra-pangong" checked><span>Nubra → Pangong (Shyok)</span></label>
-              <label class="flex items-center gap-2 mb-2"><input type="checkbox" class="route-toggle" data-route="leh-pangong" checked><span>Leh → Pangong (Chang La)</span></label>
-              <label class="flex items-center gap-2"><input type="checkbox" class="route-toggle" data-route="leh-tsomoriri"><span>Leh → Tso Moriri</span></label>
+              <label class="flex items-center gap-2 mb-2">
+                <input type="checkbox" class="route-toggle" data-route="leh-nubra" checked>
+                <span>Leh → Nubra (Khardung La)</span>
+              </label>
+              <label class="flex items-center gap-2 mb-2">
+                <input type="checkbox" class="route-toggle" data-route="nubra-pangong" checked>
+                <span>Nubra → Pangong (Shyok)</span>
+              </label>
+              <label class="flex items-center gap-2 mb-2">
+                <input type="checkbox" class="route-toggle" data-route="leh-pangong" checked>
+                <span>Leh → Pangong (Chang La)</span>
+              </label>
+              <label class="flex items-center gap-2">
+                <input type="checkbox" class="route-toggle" data-route="leh-tsomoriri">
+                <span>Leh → Tso Moriri</span>
+              </label>
             </div>
 
             <div class="card-hover-effect p-4 rounded-xl">
@@ -913,7 +920,7 @@ Day 6: Monasteries / Buffer day (Departure)</pre>
           </div>
           <a href="#contact" class="mt-6 inline-block bg-gray-800 text-white px-5 py-2 rounded-md hover:bg-gray-900 transition">Read More</a>
         </div>
-        <div id="faq" aria-labelledby="faq-heading">
+        <div aria-labelledby="faq-heading">
           <h2 id="faq-heading" class="text-3xl font-bold text-gray-800 mb-4">Frequently Asked Questions</h2>
           <div class="space-y-4" id="faq-container" itemscope itemtype="https://schema.org/FAQPage">
             <div class="faq-item bg-white p-4 rounded-lg shadow-sm border" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
@@ -990,7 +997,7 @@ Day 6: Monasteries / Buffer day (Departure)</pre>
           <div class="flex space-x-4 mt-4">
             <a href="#" class="text-gray-400 hover:text-white" aria-label="Facebook"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12C22 6.477 17.523 2 12 2S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987H7.898V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg></a>
             <a href="#" class="text-gray-400 hover:text-white" aria-label="Twitter"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0 0 22 5.92a8.19 8.19 0 0 1-2.357.646 4.118 4.118 0 0 0 1.804-2.27 8.224 8.224 0 0 1-2.605.996 4.107 4.107 0 0 0-6.993 3.743A11.65 11.65 0 0 1 3.188 5.69a4.106 4.106 0 0 0 1.27 5.477 4.072 4.072 0 0 1-1.487-.412v.052a4.105 4.105 0 0 0 3.292 4.022 4.095 4.095 0 0 1-1.853.07 4.108 4.108 0 0 0 3.834 2.85A8.233 8.233 0 0 1 2 18.407a11.616 11.616 0 0 0 6.29 1.84"/></svg></a>
-            <a href="#" class="text-gray-400 hover:text-white" aria-label="Instagram"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 0 1 1.772 1.153 4.902 4.902 0 0 1 1.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 0 1-1.153 1.772 4.902 4.902 0 0 1-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 0 1-1.772-1.153 4.902 4.902 0 0 1-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.60-3.808"/></svg></a>
+            <a href="#" class="text-gray-400 hover:text-white" aria-label="Instagram"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 0 1 1.772 1.153 4.902 4.902 0 0 1 1.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 0 1-1.153 1.772 4.902 4.902 0 0 1-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 0 1-1.772-1.153 4.902 4.902 0 0 1-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 0 1 1.153-1.772A4.902 4.902 0 0 1 6.345 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.148 2 12.315 2z"/></svg></a>
           </div>
         </div>
       </div>
@@ -1013,11 +1020,6 @@ Day 6: Monasteries / Buffer day (Departure)</pre>
       <button data-package="Quick Mobile Inquiry" class="booking-btn bg-white text-indigo-600 font-bold px-4 py-2 rounded-lg">Get Quote</button>
     </div>
   </div>
-
-  <!-- Back to Top -->
-  <button id="back-to-top" aria-label="Back to top" class="hidden rounded-full bg-white/90 shadow-lg border p-3 text-gray-700 hover:bg-white transition">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5l7 7-1.41 1.41L13 9.83V20h-2V9.83l-4.59 4.58L5 12z"/></svg>
-  </button>
 
   <!-- Booking Modal -->
   <div id="booking-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden opacity-0" aria-modal="true" role="dialog" aria-labelledby="modal-title">
@@ -1104,9 +1106,6 @@ Day 6: Monasteries / Buffer day (Departure)</pre>
               <button type="button" id="applyPromoBtn" class="px-3 py-2 bg-gray-800 text-white rounded-lg">Apply</button>
             </div>
             <div id="promoFeedback" class="text-sm"></div>
-            <div class="flex flex-wrap gap-2">
-              <button type="button" id="pay-advance-btn" class="btn-primary text-white px-4 py-2 rounded-lg">Pay 20% Advance (Razorpay)</button>
-            </div>
           </div>
 
           <button type="submit" id="submit-booking-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center">
@@ -1116,4 +1115,569 @@ Day 6: Monasteries / Buffer day (Departure)</pre>
         </form>
       </div>
       <div id="success-message" class="hidden text-center py-8">
-        <h2 class="text-2xl 
+        <h2 class="text-2xl font-bold text-green-500 mb-4">Thank You!</h2>
+        <p class="text-gray-700 mb-6">Your request has been sent. Our team will respond shortly.</p>
+        <a id="whatsapp-confirm-btn" href="#" target="_blank" class="inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 mb-2">Confirm on WhatsApp</a>
+        <button id="close-success-btn" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox overlay -->
+  <div id="lightbox" class="fixed inset-0 bg-black/80 z-50 hidden opacity-0 flex items-center justify-center p-4">
+    <button id="lightbox-close" class="absolute top-4 right-5 text-white text-3xl leading-none" aria-label="Close">&times;</button>
+    <img id="lightbox-img" src="" alt="" class="max-h-[85vh] max-w-[90vw] rounded-lg shadow-2xl">
+  </div>
+
+  <script type="module">
+    async function main() {
+      // Mobile menu
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton?.addEventListener('click', () => {
+        const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', String(!expanded));
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // FAQ toggle
+      const faqContainer = document.getElementById('faq-container');
+      faqContainer?.addEventListener('click', (e) => {
+        const faqQuestion = e.target.closest('.faq-question');
+        if (faqQuestion) faqQuestion.parentElement.classList.toggle('open');
+      });
+
+      // Modal + form
+      initBookingModal();
+
+      // Rotating text
+      initRotatingText();
+
+      // Scroll-in animations
+      initScrollAnimations();
+
+      // Counters
+      initCounters();
+
+      // Testimonials slider
+      initSlider();
+
+      // Advisory timestamp
+      const advisoryUpdated = document.getElementById('advisory-updated');
+      if (advisoryUpdated) {
+        const now = new Date();
+        advisoryUpdated.textContent = `Updated: ${now.toLocaleDateString()} ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+      }
+
+      // Active nav highlight
+      initActiveNav();
+
+      // New features
+      initWeatherWidget();
+      initLightbox();
+      initItineraryTabs();
+      initMapRoutes();
+      initCopyPromoButtons();
+      initCopyItineraryButtons();
+    }
+
+    function initBookingModal() {
+      const modal = document.getElementById('booking-modal');
+      const closeModalBtn = document.getElementById('close-modal-btn');
+      const bookingBtns = document.querySelectorAll('.booking-btn');
+      const packageInput = document.getElementById('package');
+      const modalTitle = document.getElementById('modal-title');
+      const bookingForm = document.getElementById('booking-form');
+      const submitBtn = document.getElementById('submit-booking-btn');
+      const submitText = document.getElementById('submit-text');
+      const loadingSpinner = document.getElementById('loading-spinner');
+      const formContent = document.getElementById('form-content');
+      const successMessage = document.getElementById('success-message');
+      const closeSuccessBtn = document.getElementById('close-success-btn');
+      const estimateValue = document.getElementById('estimate-value');
+      const estimateSavings = document.getElementById('estimate-savings');
+      const promoCodeInput = document.getElementById('promoCode');
+      const applyPromoBtn = document.getElementById('applyPromoBtn');
+      const promoFeedback = document.getElementById('promoFeedback');
+      const modalPanel = document.getElementById('modal-panel');
+      let focusTrapPrev = null;
+
+      const PROMOS = {
+        LADAKH10: { type: 'percent', value: 10, cap: 3000, minDays: 5, label: '10% off up to ₹3,000 (5+ days)' },
+        SUMMER500: { type: 'flat', value: 500, label: 'Flat ₹500 off' },
+        GROUP4: { type: 'percent', value: 7, cap: 5000, minPeople: 4, label: '7% off up to ₹5,000 (4+ people)' },
+      };
+      let appliedPromo = null;
+      let lastEstimate = 0;
+
+      const openModal = (packageName, price) => {
+        packageInput.value = packageName || 'General Inquiry';
+        modalTitle.textContent = `Inquiry for: ${packageInput.value}`;
+        formContent.classList.remove('hidden');
+        successMessage.classList.add('hidden');
+        bookingForm.reset();
+        appliedPromo = null;
+        promoFeedback.textContent = '';
+        promoFeedback.className = 'text-sm';
+        estimateSavings.classList.add('hidden');
+
+        estimateValue.textContent = price ? `₹${Number(price).toLocaleString('en-IN')}` : '₹—';
+
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+
+        // focus trap
+        focusTrapPrev = document.activeElement;
+        modalPanel.setAttribute('tabindex', '-1');
+        modalPanel.focus();
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeModal = () => {
+        modal.classList.add('opacity-0');
+        setTimeout(() => modal.classList.add('hidden'), 300);
+        document.body.style.overflow = '';
+        if (focusTrapPrev) focusTrapPrev.focus();
+      };
+
+      bookingBtns.forEach(btn => {
+        btn.addEventListener('click', () => openModal(btn.dataset.package, btn.dataset.price));
+      });
+
+      closeModalBtn.addEventListener('click', closeModal);
+      closeSuccessBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      window.addEventListener('keydown', (e) => { if (!modal.classList.contains('hidden') && e.key === 'Escape') closeModal(); });
+
+      // Estimate calculator + promo
+      bookingForm.addEventListener('input', () => updateEstimate());
+      applyPromoBtn.addEventListener('click', () => updateEstimate(true));
+      promoCodeInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); updateEstimate(true); } });
+
+      function getTripDays() {
+        const s = document.getElementById('startDate').value;
+        const e = document.getElementById('endDate').value;
+        if (!s || !e) return null;
+        const sd = new Date(s), ed = new Date(e);
+        if (isNaN(sd) || isNaN(ed) || ed < sd) return null;
+        const diff = Math.round((ed - sd) / (1000*60*60*24)) + 1;
+        return diff;
+      }
+
+      function validatePromo(code, estimate, people, days) {
+        const C = (code || '').trim().toUpperCase();
+        if (!C || !PROMOS[C]) return { ok: false, msg: 'Enter a valid promo code.' };
+        const p = PROMOS[C];
+        if (p.minPeople && (!people || Number(people) < p.minPeople)) {
+          return { ok: false, msg: `Code requires at least ${p.minPeople} travelers.` };
+        }
+        if (p.minDays && (!days || days < p.minDays)) {
+          return { ok: false, msg: `Code requires a trip of ${p.minDays}+ days.` };
+        }
+        let discount = 0;
+        if (p.type === 'flat') discount = p.value;
+        if (p.type === 'percent') discount = Math.round((estimate * p.value) / 100);
+        if (p.cap) discount = Math.min(discount, p.cap);
+        if (discount <= 0) return { ok: false, msg: 'Promo not applicable.' };
+        return { ok: true, code: C, label: p.label, discount };
+      }
+
+      function updateEstimate(tryApplyPromo = false) {
+        const people = Number(document.getElementById('people').value || 0);
+        const pkgBtnPrice = [...document.querySelectorAll('.booking-btn')]
+          .map(b => b.dataset)
+          .find(d => d.package === packageInput.value)?.price;
+
+        const base = pkgBtnPrice ? Number(pkgBtnPrice) : 25000; // default
+        const vehiclesNeeded = Math.max(1, Math.ceil(Math.max(people,1) / 4));
+        const estimate = base * vehiclesNeeded;
+        lastEstimate = estimate;
+
+        let finalAmount = estimate;
+        const days = getTripDays();
+
+        if (tryApplyPromo || appliedPromo) {
+          const code = appliedPromo?.code || promoCodeInput.value;
+          const res = validatePromo(code, estimate, people, days);
+          if (res.ok) {
+            appliedPromo = res;
+            finalAmount = Math.max(0, estimate - res.discount);
+            promoFeedback.textContent = `Applied ${res.code}: ${res.label} (−₹${res.discount.toLocaleString('en-IN')})`;
+            promoFeedback.className = 'text-sm text-green-700';
+            estimateSavings.classList.remove('hidden');
+            estimateSavings.innerHTML = `You save <b>₹${res.discount.toLocaleString('en-IN')}</b>`;
+          } else {
+            if (tryApplyPromo || promoCodeInput.value) {
+              promoFeedback.textContent = res.msg;
+              promoFeedback.className = 'text-sm text-red-600';
+            } else {
+              promoFeedback.textContent = '';
+              promoFeedback.className = 'text-sm';
+            }
+            appliedPromo = null;
+            estimateSavings.classList.add('hidden');
+          }
+        } else {
+          estimateSavings.classList.add('hidden');
+          promoFeedback.textContent = '';
+          promoFeedback.className = 'text-sm';
+        }
+
+        estimateValue.textContent = `₹${finalAmount.toLocaleString('en-IN')}`;
+      }
+
+      // Submit
+      bookingForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        submitText.classList.add('hidden');
+        loadingSpinner.classList.remove('hidden');
+        submitBtn.disabled = true;
+
+        const formData = {
+          name: document.getElementById('name').value,
+          people: document.getElementById('people').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          package: packageInput.value,
+          startDate: document.getElementById('startDate').value,
+          endDate: document.getElementById('endDate').value,
+          vehicle: document.getElementById('vehicle').value,
+          pickup: document.getElementById('pickup').value,
+          drop: document.getElementById('drop').value,
+          message: document.getElementById('message').value,
+          callback: document.getElementById('callback').checked ? 'Yes' : 'No',
+          estimateBefore: lastEstimate,
+          promoCode: appliedPromo?.code || (document.getElementById('promoCode').value || '').toUpperCase(),
+          discount: appliedPromo?.discount || 0,
+          estimateAfter: Math.max(0, lastEstimate - (appliedPromo?.discount || 0)),
+        };
+
+        try {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+
+          const whatsappMessage = `Hello Ladakh Ride! I would like to confirm my booking inquiry:
+
+Name: ${formData.name}
+People: ${formData.people}
+Package: ${formData.package}
+Vehicle Preference: ${formData.vehicle || 'Any'}
+
+Start Date: ${formData.startDate || '-'}
+End Date: ${formData.endDate || '-'}
+
+Pickup: ${formData.pickup || '-'}
+Drop: ${formData.drop || '-'}
+
+Phone: ${formData.phone}
+Email: ${formData.email}
+Callback: ${formData.callback}
+
+Estimate (before discount): ₹${(formData.estimateBefore || 0).toLocaleString('en-IN')}
+Promo Code: ${formData.promoCode || '-'}
+Discount: ₹${(formData.discount || 0).toLocaleString('en-IN')}
+Estimated (after discount): ₹${(formData.estimateAfter || 0).toLocaleString('en-IN')}
+
+Message: ${formData.message}
+
+Please confirm my booking and provide further details. Thank you!`;
+
+          const whatsappBtn = document.getElementById('whatsapp-confirm-btn');
+          whatsappBtn.href = `https://wa.me/918492008932?text=${encodeURIComponent(whatsappMessage)}`;
+
+          formContent.classList.add('hidden');
+          successMessage.classList.remove('hidden');
+
+          console.log("Booking inquiry submitted:", formData);
+        } catch (error) {
+          console.error("Error during submission: ", error);
+          alert("There was an error submitting your request. Please try again.");
+        } finally {
+          submitText.classList.remove('hidden');
+          loadingSpinner.classList.add('hidden');
+          submitBtn.disabled = false;
+        }
+      });
+    }
+
+    // Rotating subtitle
+    function initRotatingText() {
+      const container = document.getElementById('rotating-subtitle');
+      if (!container) return;
+      const texts = container.querySelectorAll('.rotating-text');
+      let currentIndex = 0;
+      setInterval(() => {
+        texts[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % texts.length;
+        texts[currentIndex].classList.add('active');
+      }, 3500);
+    }
+
+    // Scroll animations
+    function initScrollAnimations() {
+      const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+      }, observerOptions);
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    }
+
+    // Counters
+    function initCounters() {
+      const counters = document.querySelectorAll('.counter');
+      const obs = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = +el.getAttribute('data-target');
+            let current = 0;
+            const step = Math.ceil(target / 50);
+            const i = setInterval(() => {
+              current += step;
+              if (current >= target) {
+                current = target;
+                clearInterval(i);
+              }
+              el.textContent = current.toLocaleString('en-IN');
+            }, 30);
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.6 });
+      counters.forEach(c => obs.observe(c));
+    }
+
+    // Testimonials slider
+    function initSlider() {
+      const slides = document.getElementById('testimonial-slides');
+      if (!slides) return;
+      const dots = slides.parentElement.querySelectorAll('[data-slide]');
+      let index = 0;
+      function goTo(i) {
+        index = i;
+        slides.style.transform = `translateX(-${i * 100}%)`;
+        dots.forEach((d, di) => d.classList.toggle('bg-indigo-500', di === i));
+      }
+      dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.slide)));
+      setInterval(() => goTo((index + 1) % dots.length), 6000);
+      goTo(0);
+    }
+
+    // Active nav highlight
+    function initActiveNav() {
+      const sections = [...document.querySelectorAll('section[id]')];
+      const navLinks = [...document.querySelectorAll('a.nav-link')];
+      window.addEventListener('scroll', () => {
+        let current = sections[0]?.id;
+        for (const s of sections) {
+          const top = s.getBoundingClientRect().top;
+          if (top <= 100) current = s.id;
+        }
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href') || '';
+          const id = href.replace('#','');
+          link.classList.toggle('text-blue-200', id === current);
+        });
+      });
+    }
+
+    // Weather widget (Open-Meteo)
+    function initWeatherWidget() {
+      const lat = 34.1526, lon = 77.5771; // Leh
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min&timezone=auto`;
+      const tempEl = document.getElementById('wx-temp');
+      const windEl = document.getElementById('wx-wind');
+      const hlEl = document.getElementById('wx-highlow');
+      const upEl = document.getElementById('wx-updated');
+      if (!tempEl || !windEl || !hlEl || !upEl) return;
+
+      fetch(url).then(r => r.json()).then(d => {
+        const t = Math.round(d.current.temperature_2m);
+        const w = Math.round(d.current.wind_speed_10m);
+        const tmax = Math.round(d.daily.temperature_2m_max[0]);
+        const tmin = Math.round(d.daily.temperature_2m_min[0]);
+        tempEl.textContent = `${t}°C`;
+        windEl.textContent = `Wind: ${w} km/h`;
+        hlEl.textContent = `H: ${tmax}° • L: ${tmin}°`;
+        const now = new Date();
+        upEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }).catch(() => {
+        tempEl.textContent = '—°C';
+        windEl.textContent = 'Wind: —';
+        hlEl.textContent = 'H: —° • L: —°';
+        upEl.textContent = 'Offline';
+      });
+    }
+
+    // Simple Lightbox
+    function initLightbox() {
+      const overlay = document.getElementById('lightbox');
+      const imgTarget = document.getElementById('lightbox-img');
+      const closeBtn = document.getElementById('lightbox-close');
+      if (!overlay || !imgTarget) return;
+
+      document.addEventListener('click', (e) => {
+        const t = e.target;
+        if (t && t.hasAttribute('data-lightbox')) {
+          const full = t.getAttribute('data-full') || t.src;
+          imgTarget.src = full;
+          overlay.classList.add('lightbox-show');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+
+      function close() {
+        overlay.classList.remove('lightbox-show');
+        imgTarget.src = '';
+        document.body.style.overflow = '';
+      }
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+      closeBtn?.addEventListener('click', close);
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+    }
+
+    // Itinerary tabs
+    function initItineraryTabs() {
+      const tabs = document.querySelectorAll('.itinerary-tab');
+      const panels = {
+        silver: document.getElementById('itinerary-silver'),
+        gold: document.getElementById('itinerary-gold'),
+        diamond: document.getElementById('itinerary-diamond')
+      };
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabs.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const t = btn.getAttribute('data-target');
+          Object.entries(panels).forEach(([k, el]) => el.classList.toggle('hidden', k !== t));
+        });
+      });
+    }
+
+    // Map routes (Leaflet)
+    function initMapRoutes() {
+      const map = L.map('route-map', { scrollWheelZoom: false }).setView([34.15, 77.58], 8);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Markers
+      const pts = {
+        leh: [34.1526, 77.5771],
+        khardungla: [34.2797, 77.6050],
+        diskit: [34.5450, 77.5693],
+        pangong: [33.9171, 78.6167],   // Spangmik
+        changla: [34.0027, 77.9117],
+        tsomoriri: [32.9950, 78.2467], // Korzok
+      };
+
+      const icons = L.icon({ iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+                             iconSize: [25,41], iconAnchor: [12,41], popupAnchor: [1,-34] });
+
+      const markers = [
+        L.marker(pts.leh, {icon: icons}).bindPopup('Leh'),
+        L.marker(pts.khardungla, {icon: icons}).bindPopup('Khardung La'),
+        L.marker(pts.diskit, {icon: icons}).bindPopup('Diskit (Nubra)'),
+        L.marker(pts.pangong, {icon: icons}).bindPopup('Pangong (Spangmik)'),
+        L.marker(pts.changla, {icon: icons}).bindPopup('Chang La'),
+        L.marker(pts.tsomoriri, {icon: icons}).bindPopup('Tso Moriri (Korzok)'),
+      ];
+      markers.forEach(m => m.addTo(map));
+
+      // Polylines (approximate)
+      const poly = {
+        'leh-nubra': L.polyline([pts.leh, pts.khardungla, pts.diskit], { color:'#10b981', weight:4 }),
+        'nubra-pangong': L.polyline([pts.diskit, pts.pangong], { color:'#f59e0b', weight:4 }),
+        'leh-pangong': L.polyline([pts.leh, pts.changla, pts.pangong], { color:'#3b82f6', weight:4 }),
+        'leh-tsomoriri': L.polyline([pts.leh, pts.tsomoriri], { color:'#8b5cf6', weight:4 })
+      };
+      poly['leh-nubra'].addTo(map);
+      poly['nubra-pangong'].addTo(map);
+      poly['leh-pangong'].addTo(map);
+
+      const group = L.featureGroup([...markers, poly['leh-nubra'], poly['nubra-pangong'], poly['leh-pangong']]);
+      map.fitBounds(group.getBounds().pad(0.2));
+
+      document.querySelectorAll('.route-toggle').forEach(chk => {
+        const key = chk.getAttribute('data-route');
+        chk.addEventListener('change', () => {
+          if (chk.checked) poly[key]?.addTo(map); else map.removeLayer(poly[key]);
+        });
+      });
+    }
+
+    // Copy promo buttons
+    function initCopyPromoButtons() {
+      document.querySelectorAll('.copy-code').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const code = btn.getAttribute('data-code');
+          try {
+            await navigator.clipboard.writeText(code);
+          } catch {}
+          const promoInput = document.getElementById('promoCode');
+          if (promoInput) promoInput.value = code;
+        });
+      });
+    }
+
+    // Copy itinerary buttons
+    function initCopyItineraryButtons() {
+      document.querySelectorAll('.copy-itinerary').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const panel = btn.getAttribute('data-panel');
+          const pre = document.getElementById(`itinerary-${panel}-text`);
+          if (!pre) return;
+          try {
+            await navigator.clipboard.writeText(pre.innerText.trim());
+            btn.textContent = 'Copied!';
+            setTimeout(() => btn.textContent = 'Copy Itinerary', 1200);
+          } catch {
+            alert('Copy failed. Please try again.');
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', main);
+  </script>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Ladakh Ride",
+    "url": "https://www.ladakhride.com/",
+    "logo": "https://www.ladakhride.com/logo.png",
+    "image": "https://images.unsplash.com/photo-1605649487212-47bdab0622e5?q=80&w=1600&auto=format&fit=crop",
+    "telephone": "+91-12345-67890",
+    "email": "contact@ladakhride.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Leh",
+      "addressLocality": "Leh",
+      "addressRegion": "Ladakh",
+      "postalCode": "194101",
+      "addressCountry": "IN"
+    },
+    "areaServed": "Ladakh",
+    "openingHours": "Mo-Su 00:00-23:59",
+    "priceRange": "₹₹",
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "1200" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Are Ladakh Ride cabs genuine?","acceptedAnswer":{"@type":"Answer","text":"Yes. We’re a registered, local agency with 10+ years of experience and verified, licensed drivers."}},
+      {"@type":"Question","name":"Do you provide support before, during, and after the tour?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. We assist with planning, permits, real-time route changes, and post-tour follow-ups."}},
+      {"@type":"Question","name":"Are your drivers qualified and vehicles well maintained?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our drivers are local, experienced, and licensed. Fleet is terrain-ready with regular checks."}},
+      {"@type":"Question","name":"Do you accept online or cash payments?","acceptedAnswer":{"@type":"Answer","text":"Both. Pay online to confirm, and pay the balance via UPI or cash during your tour."}}
+    ]
+  }
+  </script>
+</body>
+</html>
